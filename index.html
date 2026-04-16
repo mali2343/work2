@@ -380,7 +380,7 @@
       border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
       overflow: hidden;
       background: 
-        url('images/WhatsApp\ Image\ 2026-04-12\ at\ 19.06.21.jpeg') center/cover no-repeat,
+        url('/images/WhatsApp\ Image\ 2026-04-12\ at\ 19.06.21.jpeg') center/cover no-repeat,
         linear-gradient(160deg, var(--blush) 0%, var(--rose) 50%, var(--brown) 100%);
       box-shadow: var(--shadow-lg);
       display: flex;
@@ -457,7 +457,7 @@
       position: absolute;
       inset: 0;
       background:
-        url('images/shutterstock_1845326779-Photoroom.png') center/cover no-repeat,
+        url('/images/shutterstock_1845326779-Photoroom.png') center/cover no-repeat,
         linear-gradient(150deg, var(--blush) 0%, var(--rose) 55%, var(--brown) 100%);
       display: flex;
       align-items: center;
@@ -1744,25 +1744,25 @@
        GALLERY DATA  —  17 images + 3 videos
     ───────────────────────────────────────── */
     const GM_DATA = [
-      { type: 'image', src: 'images/work.jpg',    },
-      { type: 'image', src: 'images/work2.jpg',   },
-      { type: 'image', src: 'images/work3.jpg',   },
-      { type: 'image', src: 'images/work4.jpg',   },
-      { type: 'image', src: 'images/work5.jpg',   },
-      { type: 'image', src: 'images/work6.jpg',   },
-      { type: 'image', src: 'images/work7.jpg',   },
-      { type: 'image', src: 'images/work8.jpg',  },
-      { type: 'image', src: 'images/work9.jpg',   },
-      { type: 'image', src: 'images/work10.jpg',  },
-      { type: 'image', src: 'images/work11.jpg',  },
-      { type: 'image', src: 'images/work12.jpg', },
-      { type: 'image', src: 'images/work13.jpg', },
-      { type: 'image', src: 'images/work14.jpg', },
-      { type: 'image', src: 'images/work15.jpg',  },
-      { type: 'image', src: 'images/work16.jpg',  },
-      { type: 'video', src: 'images/work18.mp4', },
-      { type: 'video', src: 'images/work19.mp4', },
-      { type: 'video', src: 'images/work20.mp4', },
+      { type: 'image', src: '/images/work.jpg',    },
+      { type: 'image', src: '/images/work2.jpg',   },
+      { type: 'image', src: '/images/work3.jpg',   },
+      { type: 'image', src: '/images/work4.jpg',   },
+      { type: 'image', src: '/images/work5.jpg',   },
+      { type: 'image', src: '/images/work6.jpg',   },
+      { type: 'image', src: '/images/work7.jpg',   },
+      { type: 'image', src: '/images/work8.jpg',  },
+      { type: 'image', src: '/images/work9.jpg',   },
+      { type: 'image', src: '/images/work10.jpg',  },
+      { type: 'image', src: '/images/work11.jpg',  },
+      { type: 'image', src: '/images/work12.jpg', },
+      { type: 'image', src: '/images/work13.jpg', },
+      { type: 'image', src: '/images/work14.jpg', },
+      { type: 'image', src: '/images/work15.jpg',  },
+      { type: 'image', src: '/images/work16.jpg',  },
+      { type: 'video', src: '/images/work18.mp4', },
+      { type: 'video', src: '/images/work19.mp4', },
+      { type: 'video', src: '/images/work20.mp4', },
     ];
     const GM_TOTAL = GM_DATA.length;
 
@@ -1998,9 +1998,13 @@
     }
 
     /* ─ Mobile menu ─ */
-    function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
-    function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+  function openMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
 
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
     /* ─ WhatsApp form ─ */
     function sendWhatsApp() {
       const name    = document.getElementById('wa-name').value.trim();
