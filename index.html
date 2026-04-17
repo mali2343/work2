@@ -285,6 +285,17 @@
       margin-bottom: 1.4rem;
       animation: fadeUp 0.8s ease both 0.35s;
     }
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    text-align: center;
+    padding: 0 12px;
+  }
+}
+
     .hero h1 .gold { color: var(--pink-primary); }
 
     .hero-sub {
@@ -356,6 +367,50 @@
       object-fit: cover;
       display: block;
     }
+
+    @media (max-width: 768px) {
+  .hero {
+    padding-top: 80px;
+    min-height: auto;
+    justify-content: center;
+  }
+
+  .hero-right {
+    width: 100%;
+    padding: 2rem 1.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hero-image-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-logo-circle {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .hero-actions {
+    justify-content: center !important;
+    width: 100%;
+  }
+
+  .hero-deco-text {
+    display: none;
+  }
+}
+
+    
 
     /* #8 - הסתרת הריבוע "מומחיות קוסמטיקה" */
     .hero-badge {
@@ -2319,7 +2374,7 @@
       </div>
       <div class="pillar">
         <strong>חומרים איכותיים</strong>
-        <p>חומרים איכותיים ומובחרים שנבחרו בקפידה לתוצאה מושלמת.</p>
+        <p>מוצרים מוסמכים, ידידותיים לעור בלבד.</p>
       </div>
       <div class="pillar">
         <strong>אווירה נעימה ורגועה</strong>
