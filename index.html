@@ -103,28 +103,6 @@
     .btn-gold:hover { background: linear-gradient(135deg, var(--pink-dark), #a88050); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(180,100,120,0.45); }
     .btn-gold:hover::before { opacity: 1; }
 
-    /* #6 - כפתור "לאינסטגרם" — אותם גוונים של כפתור "לקביעת תור" */
-    .btn-instagram {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: var(--sans);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      padding: 0.9rem 2.2rem;
-      background: linear-gradient(135deg, var(--pink-primary), var(--gold-luxury));
-      color: var(--white);
-      border: none;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 20px rgba(180,100,120,0.35);
-      text-decoration: none;
-    }
-    .btn-instagram:hover { background: linear-gradient(135deg, var(--pink-dark), #a88050); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(180,100,120,0.45); }
-
     .btn-outline {
       display: inline-flex;
       align-items: center;
@@ -203,35 +181,11 @@
     .nav-wa:hover { background: linear-gradient(135deg, var(--pink-primary), var(--gold-luxury)); color: white; transform: translateY(-2px); }
     .nav-wa svg { width: 16px; height: 16px; fill: var(--pink-primary); }
 
-    /* #1 - כפתור אינסטגרם בנאב — הורד מעט למטה */
-    .instagram-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-family: var(--Assistant, Arial);
-      font-size: 16px;
-      font-weight: 500;
-      color: #3a3a3a;
-      background: linear-gradient(145deg,
-        rgba(248, 243, 236, 0.98),
-        rgba(232, 225, 214, 0.95),
-        rgba(220, 212, 200, 0.92)
-      );
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      margin-top: 6px; /* #1 - הורד מעט למטה */
-    }
-    .instagram-btn:hover { background: linear-gradient(135deg, var(--pink-primary), var(--gold-luxury)); color: white; transform: translateY(-2px); }
-
-    .instagram-icon { font-size: 18px; }
-    .instagram-text { letter-spacing: 0.5px; }
+    /* שינוי 1: הסרת כפתור אינסטגרם — הסרנו את .instagram-btn לחלוטין */
 
     .social-buttons {
       display: flex;
-      align-items: flex-start; /* #1 - כדי שהאינסטגרם יוכל לרדת */
+      align-items: center;
       gap: 12px;
     }
 
@@ -291,9 +245,9 @@
   align-items: center;
   text-align: center;
   min-height: 100vh;
-    position: relative; /* 🔥 הוספה חשובה בשביל ה-::before */
-  overflow: hidden;   /* מונע גלישה של אפקטים */
-  flex-direction: column; /* 🔥 הוספה - מרכז הכל */
+    position: relative;
+  overflow: hidden;
+  flex-direction: column;
 
 }
 
@@ -308,8 +262,22 @@
       z-index: 0; 
     }
 
+    /* שינוי 3: כל הכותרות — גופן אחיד יוקרתי */
+    h1, h2, h3,
+    .section-header h2,
+    .service-title,
+    .faq-q span,
+    .about-content h2,
+    .faq-left h2,
+    .wa-section h2,
+    .cta-band h2,
+    .unified-title,
+    .footer-col h4 {
+      font-family: var(--serif) !important;
+    }
+
     .hero h1 {
-      font-family: var(--Assistant);
+      font-family: var(--serif) !important;
       font-size: clamp(2.8rem, 5vw, 5rem);
       font-weight: 900;
       line-height: 1.12;
@@ -342,14 +310,28 @@
       display: none;
     }
 
+    /* שינוי 2: כותרת "מלכה בוטיק" מעל הלוגו — ממורכזת */
+    .hero-site-title {
+      text-align: center;
+      font-family: var(--serif) !important;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: var(--pink-primary);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
 .hero-right {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  text-align: center; /* 🔥 חשוב */
+  text-align: center;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
     .hero-image-wrap {
@@ -384,7 +366,7 @@
       position: absolute;
       top: 10%;
       right: -5%;
-      font-family: var(--Assistant);
+      font-family: var(--serif) !important;
       font-size: clamp(5rem, 12vw, 10rem);
       font-weight: 900;
       color: rgba(212,153,154,0.07);
@@ -393,35 +375,17 @@
       writing-mode: vertical-rl;
     }
 
-
-
-    /* #2 - כותרת עליונה "מלכה בוטיק" גדולה, ממורכזת */
-    .hero-site-title {
-      text-align: center;
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 900;
-      color: var(--pink-primary);
-      letter-spacing: 0.06em;
-      padding: 1.5rem 0 0.5rem;
-      background: var(--site-bg);
-    }
-
     /* #4 - סלוגן מתחת ללוגו */
     .hero-slogan {
       text-align: center;
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1.2rem;
       font-weight: 500;
       color: var(--pink-dark);
       letter-spacing: 0.12em;
       margin-top: 1rem;
-      /* #4 - ללא קו תחתון */
       text-decoration: none;
     }
-
-
-    
 
     /* ── DIVIDER ── */
     .gold-divider {
@@ -430,8 +394,6 @@
     }
 
     /* ── ABOUT ── */
-
-
     .about-img-bg {
       position: absolute;
       inset: 0;
@@ -474,7 +436,7 @@
 }
 
 .about-content h2 {
-  font-family: var(--Assistant);
+  font-family: var(--serif) !important;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 700;
   line-height: 1.25;
@@ -546,7 +508,7 @@
 
 .pillar strong {
   display: block;
-  font-family: var(--Assistant);
+  font-family: var(--serif) !important;
   font-size: 1rem;
   font-weight: 700;
   color: var(--dark);
@@ -559,7 +521,7 @@
 }
     .about-sig {
       margin-top: 2rem;
-      font-family: var(--Assistant);
+      font-family: var(--serif) !important;
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--pink-primary);
@@ -568,7 +530,7 @@
 
     /* ── #14 - כותרות אחידות ── */
     .unified-title {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 700;
       color: var(--pink-dark);
@@ -583,7 +545,7 @@
     }
     .section-header .tag { margin-bottom: 0.8rem; display: block; }
     .section-header h2 {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 700;
       color: var(--pink-dark);
@@ -689,7 +651,7 @@
       background: linear-gradient(to bottom, rgba(14,8,4,0.85) 0%, transparent 100%);
     }
     .gmodal-logo {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1.1rem;
       font-weight: 700;
       color: rgba(204, 143, 143, 0.45);
@@ -697,7 +659,7 @@
     }
     .gmodal-logo span { color: var(--pink-primary); }
     .gmodal-counter {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 0.82rem;
       color: rgba(255, 255, 255, 0.4);
       letter-spacing: 0.14em;
@@ -807,7 +769,7 @@
       z-index: 2;
     }
     .gmodal-caption-label {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1rem;
       font-weight: 500;
       color: rgba(255,255,255,0.75);
@@ -958,7 +920,7 @@
       background: linear-gradient(to bottom, rgba(10,5,2,0.9) 0%, transparent 100%);
     }
     .tmodal-logo {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1.1rem;
       font-weight: 700;
       color: rgba(255,255,255,0.4);
@@ -966,7 +928,7 @@
     }
     .tmodal-logo span { color: var(--pink-primary); }
     .tmodal-counter {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 0.82rem;
       color: rgba(255,255,255,0.38);
       letter-spacing: 0.14em;
@@ -1107,7 +1069,7 @@
     }
     .faq-left .tag { margin-bottom: 1rem; }
     .faq-left h2 {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: clamp(1.8rem, 2.8vw, 2.6rem);
       font-weight: 700;
       color: var(--dark);
@@ -1138,7 +1100,7 @@
       text-align: right;
     }
     .faq-q span {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1.05rem;
       font-weight: 500;
       color: var(--dark);
@@ -1201,7 +1163,7 @@
 
     .wa-section .tag { margin-bottom: 1rem; }
     .wa-section h2 {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 700;
       color: var(--pink-dark);
@@ -1313,7 +1275,7 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%,-50%);
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: clamp(8rem, 22vw, 22rem);
       font-weight: 900;
       color: rgba(255,255,255,0.03);
@@ -1323,7 +1285,7 @@
     }
     .cta-band .tag { color: var(--pink-light); margin-bottom: 1rem; }
     .cta-band h2 {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 700;
       color: var(--white);
@@ -1381,6 +1343,7 @@
     .social-btn:hover { border-color: var(--pink-primary); background: rgba(212,153,154,0.1); color: var(--pink-primary); }
 
     .footer-col h4 {
+      font-family: var(--serif) !important;
       font-size: 0.7rem;
       font-weight: 500;
       letter-spacing: 0.16em;
@@ -1553,7 +1516,7 @@
     }
 
     .service-title {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--dark);
@@ -1652,7 +1615,7 @@
 
 /* טקסט מוגדל משמעותית */
 .between-sections-phrase p {
-  font-family: var(--Assistant);
+  font-family: var(--serif) !important;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 800;
   color: var(--pink-primary);
@@ -1841,14 +1804,14 @@
       background: linear-gradient(to bottom, rgba(8,4,2,0.95) 0%, transparent 100%);
     }
     .pmodal-logo {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 1rem;
       font-weight: 700;
       color: rgba(200,164,106,0.4);
       letter-spacing: 0.08em;
     }
     .pmodal-counter {
-      font-family: var(--serif);
+      font-family: var(--serif) !important;
       font-size: 0.78rem;
       color: rgba(255,255,255,0.35);
       letter-spacing: 0.18em;
@@ -2133,7 +2096,6 @@
 
   <!-- ══ NAV ══ -->
   <nav>
-    <!-- #2 - כותרת "מלכה בוטיק" גדולה, ממורכזת, יוקרתית, צבע אחיד -->
     <a href="#" class="nav-logo" style="font-size:2rem; font-weight:900; letter-spacing:0.06em;">מלכה <span>בוטיק</span></a>
     <ul class="nav-links">
       <li><a href="#about">עלינו</a></li>
@@ -2141,18 +2103,13 @@
       <li><a href="#gallery">גלריה</a></li>
       <li><a href="#testimonials">ביקורות</a></li>
     </ul>
+    <!-- שינוי 1: הסרנו לחלוטין את כפתור האינסטגרם מהנאב -->
     <div class="social-buttons">
       <a href="https://wa.me/972548033717" target="_blank" class="nav-wa">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
         </svg>
         וואטסאפ
-      </a>
-
-      <!-- #1 - כפתור אינסטגרם הורד מעט למטה -->
-      <a href="https://www.instagram.com/the_malka_lashes" target="_blank" class="instagram-btn">
-        <span class="instagram-icon">📷</span>
-        <span class="instagram-text">אינסטגרם</span>
       </a>
     </div>
 
@@ -2162,41 +2119,39 @@
   </nav>
 
   <!-- ══ HERO ══ -->
- <section class="hero">
-  <div class="hero-left"></div>
+  <section class="hero">
+    <div class="hero-left"></div>
 
-  <div class="hero-right">
-    <div class="hero-deco-text">יופי</div>
+    <div class="hero-right">
+      <div class="hero-deco-text">יופי</div>
 
-    <div class="hero-image-wrap" style="text-align:center;">
+      <!-- שינוי 2: כותרת "מלכה בוטיק" ממורכזת מעל הלוגו -->
+      <h1 class="hero-site-title">מלכה בוטיק</h1>
 
-      <div class="hero-logo-circle">
-        <img src="images/WhatsApp Image 2026-04-12 at 19.06.21.jpeg" alt="מלכה בוטיק" />
-      </div>
+      <div class="hero-image-wrap" style="text-align:center;">
 
-      <p class="hero-slogan">טבעיות • פשטות • שלמות</p>
+        <div class="hero-logo-circle">
+          <img src="images/WhatsApp Image 2026-04-12 at 19.06.21.jpeg" alt="מלכה בוטיק" />
+        </div>
 
-      <p style="text-align:center; margin:0.8rem 0 1.6rem; font-size:0.9rem; color:var(--brown); line-height:1.7;">
-        טיפולי יופי יוקרתיים המותאמים לך באופן אישי.
-      </p>
+        <p class="hero-slogan">טבעיות • פשטות • שלמות</p>
 
-      <div class="hero-actions" style="justify-content:center;">
+        <p style="text-align:center; margin:0.8rem 0 1.6rem; font-size:0.9rem; color:var(--brown); line-height:1.7;">
+          טיפולי יופי יוקרתיים המותאמים לך באופן אישי.
+        </p>
 
-        <a href="https://wa.me/972548033717" target="_blank" class="btn-gold">
-          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white;" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          לקביעת תור
-        </a>
-
-        <a href="https://www.instagram.com/the_malka_lashes" target="_blank" class="btn-instagram">
-          לאינסטגרם
-        </a>
-
+        <!-- שינוי 1: הסרנו לחלוטין את כפתור "לאינסטגרם" -->
+        <div class="hero-actions" style="justify-content:center;">
+          <a href="https://wa.me/972548033717" target="_blank" class="btn-gold">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white;" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            לקביעת תור
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <div class="gold-divider"></div>
 <!-- ══ מגוון הטיפולים — למעלה ══ -->
@@ -2209,7 +2164,6 @@
 
   <div class="services-grid">
 
-    <!-- שינוי 2: החלפת האייקונים לאייקוני SVG זהב יוקרתיים -->
     <div class="service-card">
       <div class="service-icon">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2220,7 +2174,6 @@
               <stop offset="100%" stop-color="#a07040"/>
             </linearGradient>
           </defs>
-          <!-- הרמת ריסים: עין עם ריסים מורמים -->
           <ellipse cx="14" cy="15" rx="9" ry="5.5" stroke="url(#gold1)" stroke-width="1.6" fill="none"/>
           <circle cx="14" cy="15" r="2.8" fill="url(#gold1)" opacity="0.85"/>
           <line x1="8" y1="11" x2="6.5" y2="7.5" stroke="url(#gold1)" stroke-width="1.4" stroke-linecap="round"/>
@@ -2245,7 +2198,6 @@
               <stop offset="100%" stop-color="#a07040"/>
             </linearGradient>
           </defs>
-          <!-- הרמת גבות: קשת גבה עם חץ למעלה -->
           <path d="M5 18 Q14 10 23 18" stroke="url(#gold2)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
           <path d="M5 20.5 Q14 12.5 23 20.5" stroke="url(#gold2)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.55"/>
           <polyline points="14,13 14,7 11,10" stroke="url(#gold2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -2267,7 +2219,6 @@
               <stop offset="100%" stop-color="#a07040"/>
             </linearGradient>
           </defs>
-          <!-- עיצוב גבות: מכחול + ניצוץ -->
           <path d="M6 22 L18 8 Q20 6 22 8 Q24 10 22 12 L10 22 Q8 23 6 22Z" stroke="url(#gold3)" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
           <line x1="16" y1="10" x2="20" y2="14" stroke="url(#gold3)" stroke-width="1.3"/>
           <line x1="22" y1="5" x2="22" y2="3" stroke="url(#gold3)" stroke-width="1.3" stroke-linecap="round"/>
@@ -2290,7 +2241,6 @@
               <stop offset="100%" stop-color="#a07040"/>
             </linearGradient>
           </defs>
-          <!-- שיקום גבות: עלה / צמיחה טבעית -->
           <path d="M14 22 C14 22 7 18 7 12 C7 8 10 6 14 6 C18 6 21 8 21 12 C21 18 14 22 14 22Z" stroke="url(#gold4)" stroke-width="1.6" fill="none"/>
           <path d="M14 22 L14 11" stroke="url(#gold4)" stroke-width="1.3" stroke-linecap="round"/>
           <path d="M14 17 C14 17 11 15 10 13" stroke="url(#gold4)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
@@ -2313,7 +2263,6 @@
               <stop offset="100%" stop-color="#a07040"/>
             </linearGradient>
           </defs>
-          <!-- צביעת ריסים וגבות: טיפת צבע + מכחול -->
           <path d="M10 8 Q10 4 14 4 Q18 4 18 8 L17 16 Q16 19 14 20 Q12 19 11 16 Z" stroke="url(#gold5)" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
           <circle cx="14" cy="18" r="1.5" fill="url(#gold5)" opacity="0.75"/>
           <line x1="19" y1="10" x2="24" y2="8" stroke="url(#gold5)" stroke-width="1.4" stroke-linecap="round"/>
@@ -2336,7 +2285,6 @@
               <stop offset="100%" stop-color="#a07040"/>
             </linearGradient>
           </defs>
-          <!-- שעוות פנים וגוף: גל חלק + ניצוץ -->
           <path d="M5 14 Q8 10 11 14 Q14 18 17 14 Q20 10 23 14" stroke="url(#gold6)" stroke-width="2" stroke-linecap="round" fill="none"/>
           <path d="M5 18 Q8 14 11 18 Q14 22 17 18 Q20 14 23 18" stroke="url(#gold6)" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.5"/>
           <circle cx="22" cy="7" r="1" fill="url(#gold6)"/>
@@ -2364,13 +2312,14 @@
     <p>כי עבורך זו לא רק עוד טיפול – זו חוויה. אני משלבת בין מקצועיות ברמה הגבוהה ביותר, דיוק בפרטים הקטנים, ותשוקה אמיתית לעולם היופי. כל טיפול מותאם אישית למבנה הפנים, לסגנון שלך ולתוצאה שאת חולמת עליה, תוך שימוש בחומרים איכותיים וטכניקות מתקדמות. אצלי תקבלי יחס אישי, הקשבה מלאה וליווי לאורך כל הדרך – כי היופי שלך הוא השליחות שלי. ✨</p> 
     
     <div class="about-pillars">
+      <!-- כרטיסיות קיימות — לא שונו -->
       <div class="pillar">
         <strong>דיוק מקסימלי</strong>
         <p>כל גבה מעוצבת בתשומת לב מתמטית לסימטריה שלך.</p>
       </div>
       <div class="pillar">
         <strong>חומרים איכותיים</strong>
-        <p>מוצרים מוסמכים, ידידותיים לעור בלבד.</p>
+        <p>חומרים איכותיים ומובחרים שנבחרו בקפידה לתוצאה מושלמת.</p>
       </div>
       <div class="pillar">
         <strong>אווירה נעימה ורגועה</strong>
@@ -2379,6 +2328,24 @@
       <div class="pillar">
         <strong>תיאום ציפיות</strong>
         <p>לפני כל טיפול אני מוודאת יחד איתך מה את רוצה ומה ניתן להשיג בפועל, כדי להגיע לתוצאה טבעית, מדויקת וללא הפתעות.</p>
+      </div>
+
+      <!-- שינוי 4: 4 כרטיסיות חדשות — אותו עיצוב בדיוק -->
+      <div class="pillar">
+        <strong>יחס אישי</strong>
+        <p>כל לקוחה מקבלת תשומת לב מלאה, הקשבה אמיתית וטיפול המותאם בדיוק לצרכיה.</p>
+      </div>
+      <div class="pillar">
+        <strong>מגוון טיפולים במקום אחד</strong>
+        <p>הרמת ריסים, עיצוב גבות, שעוות ועוד — הכל תחת קורת גג אחת.</p>
+      </div>
+      <div class="pillar">
+        <strong>מקצועיות</strong>
+        <p>ניסיון מוכח, ידע מעמיק וכלים מתקדמים לתוצאות ברמה הגבוהה ביותר.</p>
+      </div>
+      <div class="pillar">
+        <strong>זמינות אלייך</strong>
+        <p>אני כאן בשבילך — גם לשאלות, גם לעדכונים, גם לאחר הטיפול.</p>
       </div>
     </div>
 
@@ -2394,7 +2361,6 @@
   <section class="gallery" id="gallery">
     <div class="section-header">
       <span class="tag">תיק עבודות</span>
-      <!-- #14 - כותרת אחידה -->
       <h2 class="unified-title">העבודה <span>שלנו</span> מדברת</h2>
       <p>כל תמונה מספרת סיפור של שינוי — לפני ואחרי שגבות מעוצבות מביאות את הפנים לשיא היופי שלהן.</p>
     </div>
@@ -2431,8 +2397,7 @@
   <section class="testimonials" id="testimonials">
     <div class="section-header">
       <span class="tag">סיפורי לקוחות</span>
-      <!-- #14 - כותרת אחידה (על רקע כהה — שמרנו לבן) -->
-      <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);">מה לקוחותינו אומרות</h2>
+      <h2 style="font-family:var(--serif) !important;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);">מה לקוחותינו אומרות</h2>
       <p>דברים שבאו מהלב — מנשים שסמכו עלינו עם היופי שלהן</p>
     </div>
 
@@ -2469,7 +2434,6 @@
   <section class="products-section" id="products">
     <div class="section-header">
       <span class="tag">המוצרים שלנו</span>
-      <!-- #14 - כותרת אחידה -->
       <h2 class="unified-title">לצפייה ב<span>מוצרים</span></h2>
     </div>
 
@@ -2512,7 +2476,6 @@
   <!-- ══ WHATSAPP CONTACT ══ -->
   <section class="wa-section" id="contact">
     <span class="tag">דברי איתנו</span>
-    <!-- #14 - כותרת אחידה -->
     <h2 class="unified-title">שלחי הודעה<br>ב<span>וואטסאפ</span></h2>
     <p>מלאי את הטופס ותופנה ישירות לוואטסאפ שלנו — נחזור אלייך בהקדם האפשרי.</p>
 
@@ -2539,7 +2502,6 @@
   <!-- ══ CTA BAND ══ -->
   <section class="cta-band">
     <span class="tag">מוכנה להתחיל?</span>
-    <!-- #14 - כותרת אחידה -->
     <h2 class="unified-title" style="color:var(--white);">את היפה ביותר<br>שלך ב<span>תור אחד</span></h2>
     
     <a href="https://wa.me/972548033717" target="_blank" class="btn-gold">
@@ -2554,7 +2516,6 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <!-- #15 - "מלכה בוטיק" בצבע לבן -->
         <a href="#" class="nav-logo">מלכה <span>בוטיק</span></a>
         
         <div class="socials">
@@ -2609,9 +2570,6 @@
       <p>© 2025 מלכה בוטיק. כל הזכויות שמורות.</p>
       <p><a href="#">מדיניות פרטיות</a> &nbsp;·&nbsp; <a href="#">תנאי שימוש</a></p>
     </div>
-
-    <!-- #15 - תיק עבודות בחלק התחתון -->
-
 
   <script>
     /* ─── GALLERY DATA ─── */
