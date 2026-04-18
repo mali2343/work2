@@ -1944,6 +1944,37 @@
       background: #000;
     }
 
+    /* ── תווית מוצר בתוך המודאל ── */
+.pmodal-product-label {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: rgba(20, 20, 20, 0.95);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  text-shadow:
+    0 0 8px rgb(255, 255, 255),
+    0 0 18px rgb(255, 255, 255);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 4;
+}
+    .pmodal-product-label.visible {
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .pmodal-product-label {
+        font-size: 0.72rem;
+        bottom: 1rem;
+        letter-spacing: 0.08em;
+      }
+    }
+
     .pmodal-arrow {
       position: fixed;
       top: 50%;
@@ -2517,11 +2548,14 @@
   <div class="pmodal" id="pmodal" role="dialog" aria-modal="true" aria-label="גלריית מוצרים">
     <div class="pmodal-header">
       <div class="pmodal-logo">מלכה בוטיק — מוצרים</div>
-      <div class="pmodal-counter" id="pmCounter">1 / 4</div>
+      <div class="pmodal-counter" id="pmCounter">1 / 6</div>
       <button class="pmodal-close" onclick="closeProductsModal()" aria-label="סגור">✕</button>
     </div>
     <div class="pmodal-stage" id="pmStage">
-      <div class="pmodal-media-wrap fade-in" id="pmMediaWrap"></div>
+      <div class="pmodal-media-wrap fade-in" id="pmMediaWrap">
+        <!-- תווית מוצר — מופיעה מעל התמונה -->
+        <span class="pmodal-product-label" id="pmProductLabel"></span>
+      </div>
     </div>
     <button class="pmodal-arrow pmodal-arrow-prev" onclick="pmNext()" aria-label="הבא">&#8249;</button>
     <button class="pmodal-arrow pmodal-arrow-next" onclick="pmPrev()" aria-label="קודם">&#8250;</button>
@@ -2850,10 +2884,13 @@
 
     /* ─── שינוי 1: PRODUCTS MODAL ─── */
     const PM_DATA = [
-      { type: 'image', src: 'images/spaciel.jpeg' },
-      { type: 'image', src: 'images/spaciel2.jpeg' },
-      { type: 'image', src: 'images/spaciel3.jpeg' },
-      { type: 'image', src: 'images/spaciel4.jpeg' },
+      { type: 'image', src: 'images/spaciel.jpeg',  label: 'חמאת שיאה' },
+      { type: 'image', src: 'images/spaciel2.jpeg', label: 'שמן קיק לגבות' },
+      { type: 'image', src: 'images/spaciel3.jpeg', label: 'סבון גבות' },
+      { type: 'image', src: 'images/spaciel4.jpeg', label: 'ג׳ל קרטין לריסים ולגבות' },
+      { type: 'image', src: 'images/spaciel5.jpeg', label: 'מוצרים משלימים' },
+      { type: 'image', src: 'images/spaciel6.jpeg', label: ' טוש מיקרו בגוונים שונים לגבות' },
+      
     ];
     const PM_TOTAL = PM_DATA.length;
 
@@ -2861,10 +2898,11 @@
     let pmAnimating = false;
     let pmTouchX    = 0;
 
-    const pmodal     = document.getElementById('pmodal');
-    const pmMediaWrap = document.getElementById('pmMediaWrap');
-    const pmCounter  = document.getElementById('pmCounter');
-    const pmDotsWrap = document.getElementById('pmDots');
+    const pmodal       = document.getElementById('pmodal');
+    const pmMediaWrap  = document.getElementById('pmMediaWrap');
+    const pmCounter    = document.getElementById('pmCounter');
+    const pmDotsWrap   = document.getElementById('pmDots');
+    const pmLabelEl    = document.getElementById('pmProductLabel');
 
     PM_DATA.forEach((_, i) => {
       const d = document.createElement('button');
@@ -2887,10 +2925,20 @@
       } else {
         el = document.createElement('img');
         el.src = item.src;
-        el.alt = 'מוצר ' + (index + 1);
+        el.alt = item.label || ('מוצר ' + (index + 1));
         el.draggable = false;
       }
       return el;
+    }
+
+    function pmUpdateLabel(index) {
+      const label = PM_DATA[index].label || '';
+      pmLabelEl.textContent = label;
+      if (label) {
+        pmLabelEl.classList.add('visible');
+      } else {
+        pmLabelEl.classList.remove('visible');
+      }
     }
 
     function stopProductVideo() {
@@ -2901,11 +2949,19 @@
     function pmSetItem(index) {
       if (pmAnimating) return;
       pmAnimating = true;
+
+      /* הסתר תווית בזמן המעבר */
+      pmLabelEl.classList.remove('visible');
+
       pmMediaWrap.classList.remove('fade-in');
       pmMediaWrap.classList.add('fade-out');
       setTimeout(() => {
         stopProductVideo();
-        pmMediaWrap.innerHTML = '';
+
+        /* הסר רק את אלמנט המדיה, שמור את התווית */
+        const existingMedia = pmMediaWrap.querySelector('img, video');
+        if (existingMedia) existingMedia.remove();
+
         pmMediaWrap.appendChild(buildProductMedia(index));
         pmCounter.textContent = (index + 1) + ' / ' + PM_TOTAL;
         document.querySelectorAll('.pmodal-dot').forEach((d, i) => {
@@ -2914,13 +2970,22 @@
         pmCurrent = index;
         pmMediaWrap.classList.remove('fade-out');
         pmMediaWrap.classList.add('fade-in');
-        setTimeout(() => { pmAnimating = false; }, 380);
+
+        /* הצג תווית אחרי הפייד-אין */
+        setTimeout(() => {
+          pmUpdateLabel(index);
+          pmAnimating = false;
+        }, 380);
       }, 320);
     }
 
     function openProductsModal(index) {
       pmCurrent = index;
-      pmMediaWrap.innerHTML = '';
+
+      /* הסר מדיה קיימת, שמור תווית */
+      const existingMedia = pmMediaWrap.querySelector('img, video');
+      if (existingMedia) existingMedia.remove();
+
       pmMediaWrap.appendChild(buildProductMedia(index));
       pmMediaWrap.classList.add('fade-in');
       pmCounter.textContent = (index + 1) + ' / ' + PM_TOTAL;
@@ -2929,13 +2994,20 @@
       });
       pmodal.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      /* הצג תווית */
+      setTimeout(() => pmUpdateLabel(index), 380);
     }
 
     function closeProductsModal() {
       stopProductVideo();
+      pmLabelEl.classList.remove('visible');
       pmodal.classList.remove('active');
       document.body.style.overflow = '';
-      setTimeout(() => { pmMediaWrap.innerHTML = ''; }, 450);
+      setTimeout(() => {
+        const existingMedia = pmMediaWrap.querySelector('img, video');
+        if (existingMedia) existingMedia.remove();
+      }, 450);
     }
 
     function pmGoTo(index) { if (index !== pmCurrent) pmSetItem(index); }
